@@ -20,14 +20,16 @@ public class EditorFrame extends JFrame {
     }
 
     private void initSampleData() {
-        canvas.add(new Square(new Point(100,100),Color.black,50));
-        canvas.add(new Square(new Point(100,200),Color.black,50));
-        canvas.add(new Square(new Point(200,100),Color.black,50));
-        canvas.add(new Rectangle(new Point(200,200),Color.black,50,100));
-        canvas.add(new Rectangle(new Point(250,350),Color.black,50,100));
-        canvas.add(new Rectangle(new Point(350,250),Color.black,50,100));
-        canvas.add(new Triangle(new Point(400,400),Color.black,100));
-        canvas.add(new Circle(new Point(300,300),Color.black,100));
+        canvas.add(new Square(new Point(100, 100), Color.black, 50));
+        canvas.add(new Square(new Point(100, 200), Color.black, 50));
+        canvas.add(new Square(new Point(200, 100), Color.black, 50));
+        canvas.add(new Rectangle(new Point(200, 200), Color.black, 50, 100));
+        canvas.add(new Rectangle(new Point(250, 350), Color.black, 50, 100));
+        canvas.add(new Rectangle(new Point(350, 250), Color.black, 50, 100));
+        canvas.add(new Triangle(new Point(400, 400), Color.black, 100));
+        canvas.add(new Triangle(new Point(500, 500), Color.black, 50));
+        canvas.add(new Circle(new Point(300, 300), Color.black, 100));
+        canvas.add(new Circle(new Point(400, 400), Color.black, 50));
 
     }
 }

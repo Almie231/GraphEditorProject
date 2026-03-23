@@ -2,45 +2,58 @@ package cz.uhk.graphed.model;
 
 import java.awt.*;
 
-public class Triangle extends AbstractGraphicObject{
+public class Triangle extends AbstractGraphicObject {
     protected int a;
-    public int getA(){
+    private int cx, cy; //pomocne souradnice vrcholu C
+
+    public int getA() {
         return a;
     }
 
-    public void setA(int a){
+    public void setA(int a) {
         this.a = a;
     }
 
-    public Triangle(Point point, Color black){
+    private void computeC() {
+        cx = position.x + (int) Math.round(a / 2.0);
+        cy = position.y - (int) Math.round(a * (Math.sin(Math.PI / 3)));
     }
 
-    public Triangle (Point pozition, Color color, int a){
-        super(pozition,color);
+    public Triangle() {
+    }
+
+    public Triangle(Point pozition, Color color, int a) {
+        super(pozition, color);
         this.a = a;
+        computeC();
     }
 
     @Override
     public void draw(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(color);
-        int v = (int)(a*Math.sqrt(3)/2);
-        //bod [pos.x, pos.y] je levy dolni roh
-        int [] xPoints = {
-                pozition.x,
-                pozition.x+(a/2),
-                pozition.x+a,
-        };
-        int [] yPoints = {
-                pozition.y + v,
-                pozition.y,
-                pozition.y + v,
-        };
-        g2d.drawPolygon(xPoints, yPoints, 3);
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.drawLine(position.x, position.y, position.x + a, position.y);
+        g2d.drawLine(position.x, position.y, cx, cy);
+        g2d.drawLine(position.x + a, position.y, cx, cy);
+
     }
 
     @Override
     public boolean contains(Point p) {
-        return false;
+        //rozpohybovat trojuhelnik pomoci dx a dy a tangens
+        double dy = p.y - cy;
+        double h = (a*Math.sqrt(3)/2.0);
+        if (dy < 0 || dy >h) {
+            return false;
+        }
+        double dxMax = dy / Math.tan(Math.toRadians(60));
+        return p.x >= (cx-dxMax) && p.x <= (cx+dxMax);
+    }
+
+    @Override
+    public void setPosition(Point position) {
+        super.setPosition(position);
+        computeC();
     }
 }
