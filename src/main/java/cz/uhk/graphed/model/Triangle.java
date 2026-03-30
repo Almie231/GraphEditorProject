@@ -43,17 +43,23 @@ public class Triangle extends AbstractGraphicObject {
     public boolean contains(Point p) {
         //rozpohybovat trojuhelnik pomoci dx a dy a tangens
         double dy = p.y - cy;
-        double h = (a*Math.sqrt(3)/2.0);
-        if (dy < 0 || dy >h) {
+        double h = (a * Math.sqrt(3) / 2.0);
+        if (dy < 0 || dy > h) {
             return false;
         }
         double dxMax = dy / Math.tan(Math.toRadians(60));
-        return p.x >= (cx-dxMax) && p.x <= (cx+dxMax);
+        return p.x >= (cx - dxMax) && p.x <= (cx + dxMax);
     }
 
     @Override
     public void setPosition(Point position) {
         super.setPosition(position);
+        computeC();
+
+    }
+    @Override
+    public void move (int dx, int dy) {
+        super.move(dx, dy);
         computeC();
     }
 }
