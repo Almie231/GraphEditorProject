@@ -54,6 +54,7 @@ public class Canvas extends JPanel {
         return result;
     }
 
+
     public void add(AbstractGraphicObject object) {
         graphicObjects.add(object);
         repaint();
