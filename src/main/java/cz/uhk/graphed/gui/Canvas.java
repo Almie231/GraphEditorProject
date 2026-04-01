@@ -60,6 +60,11 @@ public class Canvas extends JPanel {
         repaint();
     }
 
+    public void clear() {
+        graphicObjects.clear();
+        repaint();
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);

@@ -27,7 +27,12 @@ public class Square extends AbstractGraphicObject {
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(color);
-        g2.drawRect(position.x, position.y, a, a);
+        if(filled==true){
+            g2.fillRect(position.x,position.y,a,a);
+        }else{
+            g2.drawRect(position.x, position.y, a, a);
+        }
+
 
     }
 

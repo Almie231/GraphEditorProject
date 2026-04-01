@@ -33,15 +33,19 @@ public class Triangle extends AbstractGraphicObject {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setColor(color);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.drawLine(position.x, position.y, position.x + a, position.y);
-        g2d.drawLine(position.x, position.y, cx, cy);
-        g2d.drawLine(position.x + a, position.y, cx, cy);
 
+        // Definice vrcholů trojúhelníku
+        int[] xPoints = {position.x, position.x + a, cx};
+        int[] yPoints = {position.y, position.y, cy};
+
+        if (filled) {
+            g2d.fillPolygon(xPoints, yPoints, 3);
+        } else {
+            g2d.drawPolygon(xPoints, yPoints, 3);
+        }
     }
-
     @Override
     public boolean contains(Point p) {
-        //rozpohybovat trojuhelnik pomoci dx a dy a tangens
         double dy = p.y - cy;
         double h = (a * Math.sqrt(3) / 2.0);
         if (dy < 0 || dy > h) {

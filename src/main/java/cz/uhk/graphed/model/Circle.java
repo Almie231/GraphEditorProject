@@ -27,8 +27,12 @@ public class Circle extends AbstractGraphicObject {
         g2d.setColor(color);
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        //prumer je 2*r
-        g2d.drawOval(position.x, position.y, r * 2, r * 2);
+        if(filled==true){
+            g2d.fillOval(position.x,position.y,r*2,r*2);
+        }else{
+            g2d.drawOval(position.x, position.y, r * 2, r * 2);
+        }
+
     }
 
     @Override

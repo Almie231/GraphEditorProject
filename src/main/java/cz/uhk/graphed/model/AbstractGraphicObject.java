@@ -5,6 +5,7 @@ import java.awt.*;
 public abstract class AbstractGraphicObject {
     protected Point position;
     protected Color color;
+    protected boolean filled = false;
 
     public AbstractGraphicObject(Point pozition, Color color) {
         this.position = pozition;
@@ -32,6 +33,14 @@ public abstract class AbstractGraphicObject {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public boolean isFilled() {
+        return filled;
+    }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
     }
 
 
